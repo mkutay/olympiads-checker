@@ -19,11 +19,15 @@ def bot():
   return ret
 
 def check():
-  tags = " @kuytay"
+  usernames = ["kuytay"]
+  mentions = ""
+  for username in usernames:
+    print(mentions)
+    mentions += discord.utils.get(client.get_channel(1134258428907368508).guild.members, name=username).mention + " "
   if bot() == 1:
-    return "results are out (for informatics birinci asama)" + tags
+    return f"results are out (for informatics birinci asama) {mentions}"
   else:
-    return "results are not out (for informatics birinci asama)" + tags
+    return f"results are not out (for informatics birinci asama)"
 
 client = discord.Client(intents=discord.Intents.all())
 token = os.getenv("DISCORD_TOKEN")
