@@ -17,6 +17,8 @@ def csolver(file):
     ekernel = np.ones((2,2),np.uint8)
     threshed_eroded = cv2.erode(threshed_dilated, ekernel, iterations = 1)
 
-    # cv2.imwrite("temp.jpg", threshed_eroded)
+    cv2.imwrite("temp.jpg", threshed_eroded)
     text = pytesseract.image_to_string(threshed_eroded)
+    text = ''.join(text.split())
+    print(text)
     return text
