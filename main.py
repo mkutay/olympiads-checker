@@ -19,10 +19,11 @@ def bot():
   return ret
 
 def check():
+  tags = " @kuytay"
   if bot() == 1:
-    return "results are out (for informatics birinci asama)"
+    return "results are out (for informatics birinci asama)" + tags
   else:
-    return "results are not out (for informatics birinci asama)"
+    return "results are not out (for informatics birinci asama)" + tags
 
 client = discord.Client(intents=discord.Intents.all())
 token = os.getenv("DISCORD_TOKEN")
@@ -48,7 +49,7 @@ async def on_message(message):
 
 async def send_message():
   await client.wait_until_ready()
-  channel = client.get_channel(1012032367382233100)
+  channel = client.get_channel(1134258428907368508)
   counter = 1
 
   while not client.is_closed():
