@@ -55,7 +55,7 @@ async def send_message():
     message = check()
     await channel.send(message)
     counter += 1
-    await asyncio.sleep(2)
+    await asyncio.sleep(60)
 
 loop = asyncio.get_event_loop()
 try:
