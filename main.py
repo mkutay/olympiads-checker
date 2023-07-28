@@ -18,7 +18,7 @@ def bot():
   
   return ret
 
-def check():
+def check(type): # if type == 1, then it is a message, otherwise it is a interval check
   usernames = ["kuytay"]
   mentions = ""
   for username in usernames:
@@ -27,7 +27,10 @@ def check():
   if bot() == 1:
     return f"results are out (for informatics birinci asama) {mentions}"
   else:
-    return f"results are not out (for informatics birinci asama)"
+    if type == 1:
+      return f"results are not out (for informatics birinci asama)"
+    else:
+      return ""
 
 client = discord.Client(intents=discord.Intents.all())
 token = os.getenv("DISCORD_TOKEN")
@@ -47,7 +50,7 @@ async def on_message(message):
   if "birinci asama" not in msg:
     return
   
-  response = check()
+  response = check(1)
 
   await message.channel.send(response)
 
@@ -57,8 +60,9 @@ async def send_message():
   counter = 1
 
   while not client.is_closed():
-    message = check()
-    await channel.send(message)
+    message = check(0)
+    if message != "":
+      await channel.send(message)
     counter += 1
     await asyncio.sleep(60)
 
